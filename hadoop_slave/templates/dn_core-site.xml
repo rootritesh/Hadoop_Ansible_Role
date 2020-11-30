@@ -1,0 +1,7 @@
+<configuration>
+<property>
+<name>fs.default.name</name>
+<value>hdfs://{{ nn_ip }}:{{ nn_port }}</value>
+</property>
+</configuration>
+

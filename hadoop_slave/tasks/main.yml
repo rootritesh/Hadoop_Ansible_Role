@@ -1,0 +1,38 @@
+---
+# tasks file for hadoop_slave
+- name: Add epel repo
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: "{{ epel_url }}"
+
+- name: Install Java
+  yum:
+    name: "{{ java8 }}"
+    state: present
+
+    #- name: Download Hadoopv1.2
+    #get_url:
+    #url: https://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1-1.x86_64.rpm
+    #dest: /root/hadoop-1.2.1-1.x86_64.rpm
+
+- name: Installing Hadoop
+  command: rpm -ivh hadoop-1.2.1-1.x86_64.rpm --force
+
+- name: Creating namenodedir
+  file:
+    path: "{{ dn_dir }}"
+    state: directory
+
+- name: Copy hdfs conf file of hadoop
+  template:
+    src: "dn_hdfs-site.xml"
+    dest: "/etc/hadoop/hdfs-site.xml"
+- name: Copy core conf file of hadoop
+  template:
+    src: "dn_core-site.xml"
+    dest: "/etc/hadoop/core-site.xml"
+
+- name: starting services
+  command: hadoop-daemon.sh start datanode
+
