@@ -11,10 +11,10 @@
     name: "{{ java8 }}"
     state: present
 
-    #- name: Download Hadoopv1.2
-    #get_url:
-    #url: https://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1-1.x86_64.rpm
-    #dest: /root/hadoop-1.2.1-1.x86_64.rpm
+- name: Download Hadoopv1.2
+  get_url:
+    url: https://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1-1.x86_64.rpm
+    dest: /root/hadoop-1.2.1-1.x86_64.rpm
 
 - name: Installing Hadoop
   command: rpm -ivh hadoop-1.2.1-1.x86_64.rpm --force
