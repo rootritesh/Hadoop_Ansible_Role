@@ -7,9 +7,8 @@
     baseurl: "{{ epel_url }}"
 
 - name: Download Java8
-  get_url:
-    url: https://repo.huaweicloud.com/java/jdk/8u171-b11/jdk-8u171-linux-x64.rpm
-    dest: /root/jdk-8u171-linux-x64.rpm
+  command: wget https://repo.huaweicloud.com/java/jdk/8u171-b11/jdk-8u171-linux-x64.rpm -O /root/jdk-8u171-linux-x64.rpm
+  
 
 - name: Download Hadoopv1.2
   get_url:
